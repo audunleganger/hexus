@@ -1,40 +1,59 @@
 import { ChangeEvent, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import songs from "./songs_data/songs-metadata.json";
 
-// Make a data scruture that combines song title and lyrics
-// 1. Loop through songs array
-// 2. For each song, load file with name equal to song.id
-// 3. Read file and parse JSON
-// 4. Create new object with song id, title and lyrics
-// 5. Append object to new array
 interface Song {
   id: string;
   title: string;
+  author: string;
+  melody: string;
+  event: string;
+  year: number;
   lyrics: string[];
+  comments: string[];
+  start_page: number;
+  end_page: number;
+  mp3: string;
 }
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [titleSearch, setTitleSearch] = useState(true);
   const [textSearch, setTextSearch] = useState(false);
-  const [songsWithLyrics, setSongsWithLyrics] = useState<Song[]>([]);
+  const [songs, setSongs] = useState<Song[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [currentSort, setCurrentSort] = useState("title asc");
 
+  // Load song objects from each song files. Path: ../public/songs/{songId}.json
   useEffect(() => {
-    const loadSongsWithLyrics = async () => {
-      const songsWithLyricsPromises = songs.map(async (song) => {
-        const songData = await import(`./songs_data/lyrics-files/${song.id}.json`);
-        return {
-          id: song.id,
-          title: song.title,
-          lyrics: songData.lyrics,
-        }
-      });
+    const fetchSongs = async () => {
+      // Try to fetch songs from localstorage first
+      try {
+        const cachedSongs = localStorage.getItem("songs");
+        let songObjects: Song[];
+        if (cachedSongs) {
+          songObjects = JSON.parse(cachedSongs);
+        } else {
+          // Fetch song ids from songs-metadata.json
+          const response = await fetch("/songs-metadata.json");
+          const songIds = await response.json();
 
-      const songsWithLyrics = await Promise.all(songsWithLyricsPromises);
-      setSongsWithLyrics(songsWithLyrics);
-    };
-    loadSongsWithLyrics();
+          // Load song objects from each line in songIds
+          songObjects = await Promise.all(songIds.map(async (songId: string) => {
+            const response = await fetch(`/songs/${songId}.json`);
+            const songObject = await response.json();
+            return songObject;
+          }));
+        }
+          songObjects.sort((a, b) => a.title.localeCompare(b.title, "nb"));
+          console.log(songObjects[0].title);
+          localStorage.setItem("songs", JSON.stringify(songObjects));
+          setSongs(songObjects);
+          setLoading(false);
+    } catch (error) {
+      console.log("Error fetching song objects:", error);
+    }
+  };
+    fetchSongs();
   }, []);
 
   const handleUpdate = (e: ChangeEvent<HTMLInputElement>) => {
@@ -49,13 +68,22 @@ const App = () => {
     setTextSearch(e.target.checked);
   }
 
-  const filteredSongs = songsWithLyrics.filter((song) => {
-    const fullLyricsString = textSearch ? song.lyrics.flat().join(" ") : "";
+  const handleSortTitleToggle = () => {
+    const sortedSongs = songs.sort((a, b) => a.title.localeCompare(b.title));
+    setSongs(sortedSongs);
+  }
+
+  const filteredSongs = songs.filter((song) => {
+    const fullLyricsString = textSearch ? song.lyrics.flat(Infinity).join(" ") : "";
     const matchingTitles = song.title.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchingLyrics = fullLyricsString.includes(searchTerm.toLowerCase());
+    const matchingLyrics = fullLyricsString.toLowerCase().includes(searchTerm.toLowerCase());
 
     return titleSearch && matchingTitles || textSearch && matchingLyrics;
   });
+
+  // const sortedSongs = filteredSongs.sort((a, b) => a.title.localeCompare(b.title));
+  // console.log(sortedSongs[0].title);
+  // console.log(sortedSongs[1].title);
 
   return (
     <>
@@ -66,13 +94,37 @@ const App = () => {
     <label htmlFor="titleCheckbox">Tittelsøk</label>
     <input type="checkbox" id="lyricsCheckbox" checked={textSearch} onChange={handleTextSearchToggle}/>
     <label htmlFor="lyricsCheckbox">Tekstsøk</label>
-    <ul>
-      {filteredSongs.map((song) => (
-        <li key={song.id}>
-          <Link to={`/songs/${song.id}`}>{song.title}</Link>
-        </li>
-      ))}
-    </ul>
+    {loading ? <p>Loading...</p> : 
+    <table>
+      <thead>
+        <tr>
+          <th>Tittel</th>
+          <th>Forfatter</th>
+          <th>Melodi</th>
+          <th>Arrangement</th>
+          <th>Side</th>
+        </tr>
+      </thead>
+      <tbody>
+        {filteredSongs.map((song) => (
+          <tr key={song.id}>
+            <td><Link to={`/songs/${song.id}`}>{song.title}</Link></td>
+            <td>{song.author}</td>
+            <td>{song.melody}</td>
+            <td>{song.event}</td>
+            <td>{song.start_page}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    // <ul>
+    //   {filteredSongs.map((song) => (
+    //     <li key={song.id}>
+    //       <Link to={`/songs/${song.id}`}>{song.title}</Link>
+    //     </li>
+    //   ))}
+    // </ul>
+    }
     </>
   )
 }

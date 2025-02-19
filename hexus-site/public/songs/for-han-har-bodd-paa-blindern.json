@@ -1,7 +1,10 @@
 {
     "id": "for-han-har-bodd-paa-blindern",
     "title": "For han har bodd på Blindern",
-    "mp3": "",
+    "author": "August “Augias” Mauritzen",
+    "melody": "Vagabonden",
+    "event": "Blindernrevyen 1957  ”Mann-i-fest”",
+    "year": 1957,
     "lyrics": [
         [
             "Jeg ligger i mitt vindu, nyter nattens poesi –",
@@ -30,7 +33,9 @@
         [
             "Ved Sognvannsbanen finnes det et lite, rødmalt hus–",
             "hvor mange kjøper selters, og hvor ingen kjøper brus.",
-            "Det står en mann bak luken – hans hår er ganske hvitt",
+            "Det står en mann bak luken – hans hår er ganske hvitt"
+        ],
+        [
             "som følge av en utstrakt, men sviktende kreditt.",
             "Og han har levd på Blindern",
             "i mange Herrens år –",
@@ -75,5 +80,13 @@
             "Jeg hører at hun kommer, men aldri at hun går –",
             "det er et knep som visstnok kun de innvidde forstår."
         ]
-    ]
+    ],
+    "comments": [
+        "Ofte synger man BARE  de to første og det siste verset",
+        "Lars Roar Langslet (1936 - 2016): Formann i Det Norske Studentersamfund 1960. Magister i filosofi, forfatter, kulturminister 1981-86 m.m.",
+        "Tore Lindbekk (1933 - 2017): Formann i Det Norske Studentersamfund 1962. Magister i sosiologi, professor i sosiologi, NTNU.",
+        "Brukets «nasjonalsang» er skrevet av August «Augias» Mauritzen (1933 – 2001) . Han var revysjef for «Pygmélion» i 1956 og skrev over halve revyen alene. Det samme gjentok seg i -57 og -58, da han overtalte to av sine venner til å være revysjefer. Mauritzen var den mest produktive i Brukets revyhistorie og skrev mer enn 40 ulike nummer(!), De 14 beste er med her i Hexus 2018."
+    ],
+    "start_page": 27,
+    "end_page": 29
 }

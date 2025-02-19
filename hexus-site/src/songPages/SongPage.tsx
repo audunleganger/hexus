@@ -8,35 +8,20 @@ const SongPage = () => {
     const [songLyrics, setSongLyrics] = useState<string[][]>([]);
 
     useEffect(() => {
-        const fetchSongMetadata = async () => {
+        const fetchSongObject = async () => {
             try {
-                const songsMetadata = await import(`../songs_data/songs-metadata.json`);
-                const songMetaData = songsMetadata.default.find((song: { id: string }) => song.id === songId);
-                if (songMetaData && songMetaData.title) {
-                    setSongTitle(songMetaData.title);
-                }
-                if (songMetaData && songMetaData.mp3) {
-                    setSongMp3(songMetaData.mp3);
-                }
-            } catch (error) {
-                console.log("Error fetching song metadata:", error);
+                const response = await fetch(`/songs/${songId}.json`);
+                const songObject = await response.json();
+                setSongTitle(songObject.title);
+                setSongLyrics(songObject.lyrics);
+                console.log(songLyrics);
+            }
+            catch (error) {
+                console.log("Error fetching song object:", error);
             }
         }
-        const fetchSongLyrics = async () => {
-            try {
-                const lyricsObject = await import(`../songs_data/lyrics-files/${songId}.json`);
-                setSongLyrics(lyricsObject.lyrics);
-            } catch (error) {
-                console.log("Error fetching song lyrics:", error);
-            }
-        }
-        fetchSongMetadata();
-        fetchSongLyrics();
+        fetchSongObject();
 }, [songId]);
-
-    if (!songTitle) {
-        return <p>Song not found</p>;
-    }
 
 
     return (

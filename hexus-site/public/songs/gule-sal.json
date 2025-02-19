@@ -1,37 +1,42 @@
 {
     "id": "gule-sal",
-    "title": "Gule Sal",
-    "mp3": "/public/mp3/gule-sal.mp3",
+    "title": "Gule sal",
+    "author": "Tarald Thommesen",
+    "melody": "Erling Brathole",
+    "event": "Blindernrevyen 1979 ”Vi bier (og blomstrer)”",
+    "year": 1979,
     "lyrics": [
         [
-            "Borte på Vindern, no'n meter fra her",
-            "ligger et sykehus blant elgamle trær",
-            "Vakker er parken, og vakkert vårt bygg,",
-            "jeg sier: senga langs veggen på gule sal er stygg!"
+            "Borte på Vinder’n, no’n meter fra her",
+            "ligger et sykehus blant eldgamle trær.",
+            "Vakker er parken og vakkert vårt bygg,",
+            "jeg sier: senga ved veggen på gule sal er stygg!"
         ],
         [
-            "Gule sal",
+            "På gule sal,",
             "ingen som hører deg.",
-            "Gule sal",
+            "På gule sal,",
             "alt bare sløver deg.",
-            "Gule sal,"
+            "På gule sal,"
         ],
         [
             "Sprø er vi alle, det vet vi så godt.",
             "Det at vi vet det sier legen er flott.",
-            "Litt gal må man være sier vår psykolog",
+            "Litt gal må man være, sier vår psykolog,",
             "første mai går han rundt i et m-l-er tog."
         ],
         [
             "M-L-er tog,",
-            "eksamen fra Blindren.",
+            "eksamen fra Blinderen.",
             "M-L-er tog,",
-            "Villa på Vinderen.",
+            "villa på Vinderen.",
             "M-L-er tog,"
         ],
         [
             "Onsdag og søndag kommer folk på visitt.",
-            "Vi deler presanger, hver smule og smitt.",
+            "Vi deler presanger, hver smule og smitt."
+        ],
+        [
             "Noen får blomster, men hvis ikke så gjør",
             "det oss ingenting, vi har nevroser fra før."
         ],
@@ -95,5 +100,10 @@
             "du tar en jævla risk.",
             "Du skal bli frisk..."
         ]
-    ]
+    ],
+    "comments": [
+        "En gripende sang som ikke kan skrives av andre enn den som selv har opplevd vår nabo i vest."
+    ],
+    "start_page": 106,
+    "end_page": 108
 }
