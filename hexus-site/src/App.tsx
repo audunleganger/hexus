@@ -27,6 +27,7 @@ const App = () => {
 
   // Load song objects from each song files. Path: ../public/songs/{songId}.json
   useEffect(() => {
+    document.title = "Hexus";
     const fetchSongs = async () => {
       // Try to fetch songs from localstorage first
       try {
@@ -56,6 +57,17 @@ const App = () => {
     }
   };
     fetchSongs();
+
+    // Add event listener to clear local storage before unloading page
+    const handleBeforeUnload = () => {
+      localStorage.removeItem("songs");
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    }
   }, []);
 
   const handleUpdate = (e: ChangeEvent<HTMLInputElement>) => {

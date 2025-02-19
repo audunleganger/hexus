@@ -26,6 +26,7 @@ const SongPage = () => {
                 setSongComments(songObject.comments);
                 setSongMp3(songObject.mp3);
                 setLoading(false);
+                document.title = songObject.title;
             }
             catch (error) {
                 console.log("Error fetching song object:", error);

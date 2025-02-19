@@ -27,6 +27,10 @@ table {
     table-layout: fixed;
 }
 
+th:nth-child(1), th:nth-child(2), th:nth-child(3) {
+    cursor: pointer;
+}
+
 th:nth-child(1), td:nth-child(1) {
     width: 20em;
 }
