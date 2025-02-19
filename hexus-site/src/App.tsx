@@ -1,5 +1,7 @@
 import { ChangeEvent, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import "./App.css";
+import { Footer } from "./components/Footer";
 
 interface Song {
   id: string;
@@ -69,9 +71,39 @@ const App = () => {
   }
 
   const handleSortTitleToggle = () => {
-    const sortedSongs = songs.sort((a, b) => a.title.localeCompare(b.title));
-    setSongs(sortedSongs);
+    if (currentSort === "title asc") {
+      const sortedSongs = songs.sort((a, b) => b.title.localeCompare(a.title, "nb"));
+      setSongs(sortedSongs);
+      setCurrentSort("title desc");
+    } else {
+      const sortedSongs = songs.sort((a, b) => a.title.localeCompare(b.title, "nb"));
+      setSongs(sortedSongs);
+      setCurrentSort("title asc");
+    }
   }
+  const handleSortYearToggle = () => {
+    if (currentSort === "year asc") {
+      const sortedSongs = songs.sort((a, b) => b.year - a.year);
+      setSongs(sortedSongs);
+      setCurrentSort("year desc");
+    } else {
+      const sortedSongs = songs.sort((a, b) => a.year - b.year);
+      setSongs(sortedSongs);
+      setCurrentSort("year asc");
+    }
+  };
+  const handleSortPageToggle = () => {
+    if (currentSort === "page asc") {
+      const sortedSongs = songs.sort((a, b) => b.start_page - a.start_page);
+      setSongs(sortedSongs);
+      setCurrentSort("page desc");
+    } else {
+      const sortedSongs = songs.sort((a, b) => a.start_page - b.start_page);
+      setSongs(sortedSongs);
+      setCurrentSort("page asc");
+      } 
+    }
+
 
   const filteredSongs = songs.filter((song) => {
     const fullLyricsString = textSearch ? song.lyrics.flat(Infinity).join(" ") : "";
@@ -86,46 +118,53 @@ const App = () => {
   // console.log(sortedSongs[1].title);
 
   return (
-    <>
-    <h1>Hexus site</h1>
-    <label htmlFor="searchField">Søk: </label>
-    <input type="text" id="searchField" onChange={handleUpdate} />
-    <input type="checkbox" id="titleCheckbox" checked={titleSearch} onChange={handleTitleSearchToggle}/>
-    <label htmlFor="titleCheckbox">Tittelsøk</label>
-    <input type="checkbox" id="lyricsCheckbox" checked={textSearch} onChange={handleTextSearchToggle}/>
-    <label htmlFor="lyricsCheckbox">Tekstsøk</label>
-    {loading ? <p>Loading...</p> : 
-    <table>
-      <thead>
-        <tr>
-          <th>Tittel</th>
-          <th>Forfatter</th>
-          <th>Melodi</th>
-          <th>Arrangement</th>
-          <th>Side</th>
-        </tr>
-      </thead>
-      <tbody>
-        {filteredSongs.map((song) => (
-          <tr key={song.id}>
-            <td><Link to={`/songs/${song.id}`}>{song.title}</Link></td>
-            <td>{song.author}</td>
-            <td>{song.melody}</td>
-            <td>{song.event}</td>
-            <td>{song.start_page}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-    // <ul>
-    //   {filteredSongs.map((song) => (
-    //     <li key={song.id}>
-    //       <Link to={`/songs/${song.id}`}>{song.title}</Link>
-    //     </li>
-    //   ))}
-    // </ul>
-    }
-    </>
+    <div className="centered">
+      <h1>Hexus</h1>
+      <section>
+        <label htmlFor="searchField">Søk: </label>
+        <input type="text" id="searchField" onChange={handleUpdate} />
+        <input type="checkbox" id="titleCheckbox" checked={titleSearch} onChange={handleTitleSearchToggle}/>
+        <label htmlFor="titleCheckbox">Tittelsøk</label>
+        <input type="checkbox" id="lyricsCheckbox" checked={textSearch} onChange={handleTextSearchToggle}/>
+        <label htmlFor="lyricsCheckbox">Tekstsøk</label>
+      </section>
+      {loading ? <p>Loading...</p> : 
+        <section className="centered">
+          <table>
+            <thead>
+              <tr>
+                <th onClick={handleSortTitleToggle}>Tittel</th>
+                <th onClick={handleSortYearToggle}>År</th>
+                <th onClick={handleSortPageToggle}>Side</th>
+                <th>Forfatter</th>
+                <th>Melodi</th>
+                <th>Arrangement</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredSongs.map((song) => (
+                <tr key={song.id}>
+                  <td><Link to={`/songs/${song.id}`}>{song.title}</Link></td>
+                  <td>{song.year}</td>
+                  <td>{song.start_page}</td>
+                  <td>{song.author}</td>
+                  <td>{song.melody}</td>
+                  <td>{song.event}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+      // <ul>
+      //   {filteredSongs.map((song) => (
+      //     <li key={song.id}>
+      //       <Link to={`/songs/${song.id}`}>{song.title}</Link>
+      //     </li>
+      //   ))}
+      // </ul>
+      }
+      <Footer />
+    </div>
   )
 }
 

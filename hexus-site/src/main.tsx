@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './index.css'
 import App from './App.tsx'
-import SongPage from "./songPages/SongPage.tsx"
+import SongPage from "./pages/SongPage.tsx"
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

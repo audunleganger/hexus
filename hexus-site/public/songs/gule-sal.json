@@ -5,6 +5,7 @@
     "melody": "Erling Brathole",
     "event": "Blindernrevyen 1979 ”Vi bier (og blomstrer)”",
     "year": 1979,
+    "mp3": "/mp3/gule-sal.mp3",
     "lyrics": [
         [
             "Borte på Vinder’n, no’n meter fra her",
@@ -34,9 +35,7 @@
         ],
         [
             "Onsdag og søndag kommer folk på visitt.",
-            "Vi deler presanger, hver smule og smitt."
-        ],
-        [
+            "Vi deler presanger, hver smule og smitt.",
             "Noen får blomster, men hvis ikke så gjør",
             "det oss ingenting, vi har nevroser fra før."
         ],
