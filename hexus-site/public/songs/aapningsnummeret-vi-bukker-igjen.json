@@ -3,7 +3,8 @@
     "title": "Åpningsnummeret: Vi bukker igjen",
     "author": "Georg Apenes",
     "melody": "Hans Flock",
-    "event": "Blindernrevyen 1963 «Vi bukker igjen»",
+    "event": "Blindernrevyen 1963",
+    "event-name": "Vi bukker igjen",
     "year": 1963,
     "lyrics": [
         [
@@ -41,14 +42,8 @@
             "så frekk?",
             "Nei, han vil også denne gangen"
         ],
-        [
-            "holde fru Minerva stangen,",
-            "han vokter suverent sin havresekk!"
-        ],
-        [
-            "\t",
-            "Refr:  (Blant alle excellenser…)"
-        ],
+        ["holde fru Minerva stangen,", "han vokter suverent sin havresekk!"],
+        ["\t", "Refr:  (Blant alle excellenser…)"],
         [
             "Ny røkter har Bruket fått fornylig, som Husfar er",
             "han vel bedre kjent.",
@@ -61,10 +56,7 @@
             "er berigelser for huset:",
             "for bukken kan jo ennå like kje! "
         ],
-        [
-            "\t",
-            "Refr: (Blant alle exellenser…)"
-        ],
+        ["\t", "Refr: (Blant alle exellenser…)"],
         [
             "I år feirer Bruket jubileum,",
             "og førti det fyller,",
@@ -78,10 +70,7 @@
             "fant blant stjerner og planeter",
             "at Stenbukken var riktig tegn for det!"
         ],
-        [
-            "\t",
-            "Refr: (Blant alle excellenser…)"
-        ]
+        ["\t", "Refr: (Blant alle excellenser…)"]
     ],
     "comments": [
         "Rett etter at G.B. Kristen Arnesen overtok som Husfar etter Jan Jahnsen i 1962, ble han utnevnt til professor i medisin. Han sluttet som Husfar i 1966."

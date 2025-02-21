@@ -7,6 +7,7 @@
     "year": 1932,
     "lyrics": [
         [
+            "<ulin><ital>Til Hans Majestet Bukken:",
             "Ædel, rik og gyllen skinner’n",
             "over hjord og hyrder ned!",
             "Skjønn og klok og synsk og blind er’n,",
@@ -17,9 +18,8 @@
             "Bukk skje lov og takk og priis! :/:"
         ],
         [
-            "Ædle (",
-            "Høy/Hel/Halv-",
-            ")het, du er vorden",
+            "<ulin><ital>Til den dekorerte:",
+            "Ædle (Høy/Hel/Halv-)het, du er vorden",
             "viis og skjønn. I Bukkens ånd",
             "har du skilt dig ut fra hjorden.",
             "Nyskapt gled du fra hans hånd",
@@ -30,8 +30,6 @@
         ]
     ],
     "comments": [
-        "Til Hans Majestet Bukken:",
-        "Til den dekorerte:",
         "Den IV Store Boksamling fant sted 12. mai 1932.",
         "Opprinnelig melodi: “Strömt herbei, ihr Völkerscharen” (Rheinlied, 1868)"
     ],
